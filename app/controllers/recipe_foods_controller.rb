@@ -8,6 +8,7 @@ class RecipeFoodsController < ApplicationController
   def show
     @recipe_food = RecipeFood.find(params[:id])
   end
+
   def create
     @recipe_food = @recipe.recipe_foods.build(recipe_food_params)
 
@@ -31,6 +32,6 @@ class RecipeFoodsController < ApplicationController
   end
 
   def recipe_food_params
-     params.require(:recipe_food).permit(:food_id, :quantity)
+    params.require(:recipe_food).permit(:food_id, :quantity)
   end
 end
