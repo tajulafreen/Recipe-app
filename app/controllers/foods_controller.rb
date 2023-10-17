@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   def index
-    @foods = current_user.foods
+    @user = current_user
+    @foods = @user.foods.all
   end
 
   def show; end
