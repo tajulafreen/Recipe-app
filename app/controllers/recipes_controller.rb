@@ -13,8 +13,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
-
-
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(public: !@recipe.public)
@@ -29,6 +27,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path
   end
+
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
