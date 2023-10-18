@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resources :recipe_foods, only: [:show, :create, :new, :destroy] 
   end
   resources :users, only: [:index, :show, :new, :create, :destroy]
+
+  get 'public_recipes', to: 'recipes#public_recipes' 
 end
