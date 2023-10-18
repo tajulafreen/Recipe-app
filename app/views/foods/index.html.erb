@@ -1,0 +1,24 @@
+<%= link_to "Add Food", new_food_path, method: :post, class: "btn btn-dark add" %>
+<h3 class="food_title">Foods page</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="input title" >Food</th>
+      <th class="input title" >Measurement unit</th>
+      <th class="input title">Unit price</th>
+      <th class="input title">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td class="input"><%= food.name %></td>
+        <td class="input"><%= food.measurement_unit %></td>
+        <td class="input"><%= food.price %></td>
+        <td class="input">
+            <%= link_to 'Delete', food_path(food), data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

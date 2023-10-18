@@ -14,16 +14,22 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
     @food.user = current_user
     if @food.save
-      redirect_to foods_path
+      flash[:success] = 'Food was successfully added.'
+      redirect_to foods_path, notice: 'Food was successfully added.'
     else
+      flash[:error] = 'Food does not exist in your food list, please add it to your food list.'
       render :new
     end
   end
 
   def destroy
     @food = Food.find(params[:id])
-    @food.destroy
-    redirect_to foods_path
+    if @food.destroy
+      flash[:notice] = 'Food was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete food.'
+    end
+    redirect_to foods_path, notice: 'Food was successfully deleted.'
   end
 
   private
