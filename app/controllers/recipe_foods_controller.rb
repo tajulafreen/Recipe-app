@@ -1,13 +1,37 @@
 class RecipeFoodsController < ApplicationController
+  before_action :set_recipe
+
+  def new
+    @recipe_food = RecipeFood.new
+  end
+
+  def show
+    @recipe_food = RecipeFood.find(params[:id])
+  end
+
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_food = @recipe.recipe_foods.create(recipe_food_params)
-    redirect_to recipe_path(@recipe)
+    @recipe_food = @recipe.recipe_foods.build(recipe_food_params)
+
+    if @recipe_food.save
+      redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully added.'
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @recipe_food = RecipeFood.find(params[:id])
+    @recipe_food.destroy
+    redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully removed.'
   end
 
   private
 
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
+
   def recipe_food_params
-    params.require(:recipe_food).permit(:quantity, :food_id, :recipe_id)
+    params.require(:recipe_food).permit(:food_id, :quantity)
   end
 end
