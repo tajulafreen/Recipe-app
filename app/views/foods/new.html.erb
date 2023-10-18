@@ -1,0 +1,19 @@
+<div class="form ff">
+<h4> Add new food</h4>
+
+<%= form_with model: @food, url: foods_path do |form| %>
+  <div class="input">
+    <%= form.text_field :name, placeholder: "Name of the food...", required: true%>
+  </div>
+  <div class="input">
+        <%= form.select :measurement_unit, options_for_select(['units', 'grams', 'kg', 'pounds']), { prompt: 'Select a category  ...' }, class: 'form-select', style: 'height:40px; width:235px' %>
+  </div>
+  <div class="input">
+    <%= form.number_field :price, placeholder: "Enter food price...", required: true%>
+  </div>
+  <div class="input">
+    <%= form.number_field :quantity, placeholder: "Enter quantity value...", required: true%>
+  </div>
+  <%=form.submit "Create food", class: "submit btn btn-dark"%>
+<%end%>
+</div>
