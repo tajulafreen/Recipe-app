@@ -8,8 +8,8 @@
       <div class="card-body">
         <h2 class="card-title"><%= link_to recipe.name, recipe %></h2>
         <p class="card-text"><strong>Description:</strong> <%= recipe.description %></p>
-        <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preparation_time %> minutes</p>
-        <p class="card-text"><strong>Cooking Time:</strong> <%= recipe.cooking_time %> minutes</p>
+        <p class="card-text"><strong>Preparation Time:</strong> <%= recipe.preparation_time_minutes %> minutes</p>
+        <p class="card-text"><strong>Cooking Time:</strong> <%= recipe.cooking_time_minutes %> minutes</p>
 
         <% if current_user == recipe.user %>
           <%= button_to "REMOVE", recipe_path(recipe.id), method: :delete, class: "btn btn-danger btn-sm" %>

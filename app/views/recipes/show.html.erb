@@ -3,21 +3,21 @@
 
   <div class="row recipe-details-box1">
     <div class="col-md-6">
-      <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+      <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time_minutes %> minutes</p>
     </div>
 
     <div class="col-md-6 text-right">
       <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
         <div class="form-group">
-          <%= f.label :public, class: 'mr-2' %>
-          <%= f.check_box :public, id: 'recipe_public', class: 'form-check-input' %>
+          <%= f.label :is_public, class: 'mr-2' %>
+          <%= f.check_box :is_public, id: 'recipe_public', class: 'form-check-input' %>
           <%= f.submit 'Toggle', class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
+  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time_minutes %> minutes</p>
   <p><strong>Description:</strong> <%= @recipe.description %></p>
 
   <div class="recipe-details-btns mt-3">
