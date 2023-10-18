@@ -1,6 +1,8 @@
-<%= link_to "Add Food", new_food_path, method: :post, class: "btn btn-dark add" %>
+<div class="container-fluid p-3">
+<%= link_to "Add Food", new_food_path, method: :post, class: "btn btn-outline-success" %>
 <h3 class="food_title">Foods page</h3>
-<table class="table">
+<table class="table table-striped">
+<% if @foods.present? %>
   <thead>
     <tr>
       <th class="input title" >Food</th>
@@ -19,6 +21,9 @@
             <%= link_to 'Delete', food_path(food), data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
         </td>
       </tr>
+       <% else %> 
+        <p>No foods found</p>
     <% end %>
   </tbody>
 </table>
+</div>
