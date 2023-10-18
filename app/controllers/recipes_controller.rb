@@ -1,4 +1,9 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, except: [:is_public_recipes]
+  def public_recipes
+    @public_recipes = Recipe.where(is_public: true).includes(recipe_foods: :food)
+  end
+
   def index
     @user = current_user
     @recipes = @user.recipes
@@ -43,5 +48,15 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time_minutes, :cooking_time_minutes, :description, :is_public)
+  end
+
+  def calculate_total_price(recipe)
+    total_price = 0.0
+
+    recipe.recipe_foods.each do |recipe_food|
+      total_price += recipe_food.food.price * recipe_food.quantity
+    end
+
+    total_price
   end
 end
