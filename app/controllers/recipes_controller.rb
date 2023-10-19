@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @user = current_user
-    @recipes = @user.recipes
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id)
   end
 
   def show
@@ -36,6 +35,26 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(@recipe), notice: 'The recipes Was created succesfully'
     else
       render :new
+    end
+  end
+
+  def general_shopping_list
+    @user = current_user
+    @recipe = Recipe.includes(:recipe_foods).find_by(id: params[:id])
+    @recipe_foods = RecipeFood.where(recipe_id: @recipe.id)
+    @needed_items = []
+    @recipe_foods.each do |recipe_food|
+      existed_food = @user.foods.find_by(name: recipe_food.food.name)
+      if existed_food.nil?
+        @needed_items << [recipe_food.food.name, recipe_food.quantity, recipe_food.food.price,
+                          recipe_food.food.measurement_unit]
+      else
+        difference_quantity = recipe_food.quantity - existed_food.quantity
+        if difference_quantity.positive?
+          @needed_items << [recipe_food.food.name, difference_quantity, existed_food.price,
+                            existed_food.measurement_unit]
+        end
+      end
     end
   end
 
