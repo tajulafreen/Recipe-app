@@ -1,0 +1,23 @@
+<h3>Shopping list</h3>
+<div class="amount">
+  <p>Amount of food to buy: <%= @needed_items.length %></p>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <% @needed_items.each do |needed_item| %>
+    <tbody>
+      <tr>
+        <td><%= needed_item[0] %></td>
+        <td><%= needed_item[1]  %><%= needed_item[3] %></td>
+        <td><%= needed_item[1] * needed_item[2] %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

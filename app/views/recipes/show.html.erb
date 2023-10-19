@@ -21,7 +21,7 @@
   <p><strong>Description:</strong> <%= @recipe.description %></p>
 
   <div class="recipe-details-btns mt-3">
-    <button class="btn btn-success">Generate Shopping List</button>
+    <%= link_to  "Generate shopping list", general_shopping_list_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
     <%= link_to "Add Ingredient", new_recipe_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary' %>
   </div>
 
