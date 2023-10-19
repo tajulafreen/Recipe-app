@@ -40,9 +40,8 @@
           <td><%= recipe_food.food.name %></td>
           <td><%= recipe_food.quantity %></td>
           <td><%= recipe_food.food.price %></td>
-          <td>
+          <td class="action">
             <%= link_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-           <button class="modify-button btn btn-dark">Modify</button>
 
  <%= form_for recipe_food, url: modify_recipe_food_path(recipe_food), method: :patch, remote: true, authenticity_token: true do |f| %>
               <div class="quantity-container">
