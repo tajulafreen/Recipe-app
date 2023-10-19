@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get 'general_shopping_list'
     end
   end
+  resources :recipe_foods, only: [:new, :create, :destroy] do
+    patch :modify, on: :member
+  end
   resources :users, only: [:index, :show, :new, :create, :destroy]
 
   # get 'public_recipes', to: 'recipes#public_recipes' 
