@@ -9,7 +9,7 @@
     <div class="col-md-6 text-right">
       <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
         <div class="form-group">
-          <%= f.label :is_public, class: 'mr-2' %>
+          <%= f.label :is_public, class: 'mr-4' %>
           <%= f.check_box :is_public, id: 'recipe_public', class: 'form-check-input' %>
           <%= f.submit 'Toggle', class: 'btn btn-primary' %>
         </div>
