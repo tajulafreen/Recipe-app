@@ -7,7 +7,7 @@ RSpec.describe 'General shopping list specs', type: :feature do
     @user = User.create!(name: 'rocky', email: 'test1@gmail.com', password: 'abcxyz123',
                          password_confirmation: 'abcxyz123', confirmed_at: Time.now)
     @recipe = Recipe.create(user: @user, name: 'Kabab', description: 'The best in the west', cooking_time_minutes: 45,
-                             preparation_time_minutes: 40, is_public: true)
+                            preparation_time_minutes: 40, is_public: true)
     @food = Food.create(user: @user, name: 'Test Food 101', measurement_unit: 'Gram', price: 9.99, quantity: 10)
     RecipeFood.create(food: @food, recipe: @recipe, quantity: 1)
     puts @recipe.id
