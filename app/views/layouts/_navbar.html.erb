@@ -15,6 +15,9 @@
         <li class="nav-item pe-5">
           <%= link_to "Create Recipe", new_recipe_path(current_user), class: 'nav-link' %>
         </li>
+        <li class="nav-item pe-5">
+           <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-primary' %>
+        </li>
         <%# <li class="nav-item pe-5">
           <%= link_to "Shopping List", shopping_lists_path(current_user), class: 'nav-link' %>
         <%# </li> %> 
