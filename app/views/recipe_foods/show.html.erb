@@ -1,0 +1,7 @@
+<div>
+Are you sure
+  <%= form_with model: @recipe_food, url: recipe_recipe_food_path(@recipe, @recipe_food), method: :delete, remote: true do |form| %>
+    <%= form.submit 'Delete', class: 'delete-button' %>
+  <% end %>
+  <%= link_to "No", recipe_path(@recipe) %>
+</div>

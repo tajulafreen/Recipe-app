@@ -1,0 +1,26 @@
+<div class="container p-5 border d-flex flex-column justify-content-center align-items-center">
+<h1 class="h1">Shopping list</h1>
+<div class="amount d-flex justify-content-between mt-5">
+  <p class="h5 p-5">Amount of food to buy: <%= @needed_items.length %></p>
+  <p class="h5 p-5"> Total value of food needed: <%= @needed_items.inject(0) { |sum, item| sum + (item[1] * item[2]) } %></p>
+</div>
+
+<table class="table">
+  <thead>
+    <tr class="p-5">
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <% @needed_items.each do |needed_item| %>
+    <tbody>
+      <tr>
+        <td><%= needed_item[0] %></td>
+        <td><%= needed_item[1]  %><%= needed_item[3] %></td>
+        <td><%= needed_item[1] * needed_item[2] %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+</div>

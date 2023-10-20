@@ -1,0 +1,17 @@
+<h1 class="h-1 text-center">Public Recipes</h1>
+<div class="container">
+  <% @public_recipes.each do |recipe| %>
+    <div class="card mb-4 d-flex flex-row">
+      <div class="d-flex flex-column m-5 col-3">
+        <h2 class="card-title"><%= link_to recipe.name, recipe %></h2>
+        <p>By: <%= recipe.user.name %></p>
+      </div>
+      <div class="d-flex flex-column m-5 col-9">
+        <h2 class="card-title">Total food items: <%= recipe.recipe_foods.length %></h2>
+        <p class="card-text">Total price:
+          <%= recipe.recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity} %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

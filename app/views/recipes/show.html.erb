@@ -1,0 +1,60 @@
+<div class="container recipe-details">
+  <h2><%= @recipe.name %></h2>
+
+  <div class="row recipe-details-box1">
+    <div class="col-md-6">
+      <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time_minutes %> minutes</p>
+    </div>
+
+    <div class="col-md-6 text-right">
+      <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :is_public, class: 'mr-4' %>
+          <%= f.check_box :is_public, id: 'recipe_public', class: 'form-check-input' %>
+          <%= f.submit 'Toggle', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time_minutes %> minutes</p>
+  <p><strong>Description:</strong> <%= @recipe.description %></p>
+
+  <div class="recipe-details-btns mt-3">
+    <%= link_to  "Generate shopping list", general_shopping_list_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
+    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary' %>
+  </div>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price %></td>
+          <td class="action">
+          <% if can? :edit, @recipe_food %>
+            <%= link_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+             <%= form_for recipe_food, url: modify_recipe_food_path(recipe_food), method: :patch, remote: true, authenticity_token: true do |f| %>
+              <div class="quantity-container">
+                <%= f.number_field :quantity, value: recipe_food.quantity, class: "quantity-input" %>
+             
+              <%= f.submit 'Modify', class: 'modify-button' %>
+              </div>
+            <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
