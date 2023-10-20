@@ -41,14 +41,16 @@
           <td><%= recipe_food.quantity %></td>
           <td><%= recipe_food.food.price %></td>
           <td class="action">
+          <% if can? :edit, @recipe_food %>
             <%= link_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 
- <%= form_for recipe_food, url: modify_recipe_food_path(recipe_food), method: :patch, remote: true, authenticity_token: true do |f| %>
+             <%= form_for recipe_food, url: modify_recipe_food_path(recipe_food), method: :patch, remote: true, authenticity_token: true do |f| %>
               <div class="quantity-container">
                 <%= f.number_field :quantity, value: recipe_food.quantity, class: "quantity-input" %>
              
               <%= f.submit 'Modify', class: 'modify-button' %>
               </div>
+            <% end %>
             <% end %>
           </td>
         </tr>
