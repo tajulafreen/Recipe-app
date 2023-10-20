@@ -129,6 +129,11 @@ run the test with:
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/foga-amos-2b5371103/)
 
 
+👤 **Tajul Afreen**
+
+- GitHub: [Tajul Afreen](https://github.com/tajulafreen)
+- LinkedIn: [Tajul Afreen](https://www.linkedin.com/in/tajul-afreen/)
+
 
 <!-- FUTURE FEATURES -->
 
