@@ -1,6 +1,6 @@
 class RecipeFoodsController < ApplicationController
-  # load_and_authorize_resource
-  # before_action :set_recipe
+    load_and_authorize_resource
+  #  before_action :set_recipe
 
   def new
     @recipe = Recipe.find(params[:recipe_id])
